@@ -1,0 +1,41 @@
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+@font-face {
+    font-family: "Poppins-Bold";
+    src: local("Poppins-Bold"), url(./assets/fonts/Poppins/Poppins-Bold.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: "Poppins-Regular";
+    src: local("Poppins-Regular"), url(./assets/fonts/Poppins/Poppins-Regular.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: "Poppins-Medium";
+    src: local("Poppins-Medium"), url(./assets/fonts/Poppins/Poppins-Medium.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: "Poppins-Italic";
+    src: local("Poppins-Italic"), url(./assets/fonts/Poppins/Poppins-Italic.ttf);
+}
+
+p {
+    font-family: "Poppins-Regular";
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Poppins-Regular";
+}
+
+label {
+    font-family: "Poppins-Regular" !important;
+}
+
+input::placeholder {
+    font-family: "Poppins-Regular";
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

@@ -1,0 +1,28 @@
+.carousel-inner img {
+    /* margin-top: 3%; */
+    /* margin-left: 25%; */
+    /* width: 40%;
+    height: 20%; */
+    border-radius: 5px;
+  }
+  .carousel-item{
+      margin-right: 5%;
+  }
+h2{
+    font-family: 'Poppins-Bold'; 
+}
+.card{
+    box-shadow: 2px 4px 8px 4px rgba(0,0,0,0.1);
+    transition: 0.3s;
+    font-family: 'Poppins-Regular';
+    height:fit-content;
+    margin-bottom: 5%;
+}
+
+.card:hover{
+    box-shadow: 2px 4px 8px 4px rgba(0,0,0,0.5);
+    transition: 0.3s;
+    font-family: 'Poppins-Regular';
+    height:fit-content;
+    margin-bottom: 5%;
+}

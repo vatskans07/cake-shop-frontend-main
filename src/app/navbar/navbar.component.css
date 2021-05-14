@@ -1,0 +1,23 @@
+.navbar-brand {
+    color: #008080;
+    font-family: 'Poppins-Bold';
+    margin-left: 5%;
+}
+.navbar-brand:hover {
+    color: #008080;
+}
+
+.btn {
+    background-color: #008080;
+    color: white;
+    font-family: 'Poppins-Regular';
+}
+
+.nav-item {
+    font-family: 'Poppins-Regular';
+}
+
+.nav-item:hover {
+    color: #008080;
+}
+

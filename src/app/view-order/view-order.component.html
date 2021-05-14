@@ -1,0 +1,65 @@
+<div class="container" style="margin-top: 5%;">
+  <h2 style="text-align: center;">Your Orders</h2>
+  <div *ngFor="let o of order">
+    <div class="card mb-3" style="width: 100%;">
+      <div class="row no-gutters">
+        <!-- <div class="col-md-4">
+          <img src="..." class="card-img" alt="...">
+        </div> -->
+        <div class="col-md-4">
+          <div class="card-body">
+            <div *ngFor="let item of o.productlist">
+              <h5 class="card-title">{{item.name}}</h5>
+              <p class="card-text"><small>Quantity: {{item.quantity}}</small></p>
+            </div>
+        </div>
+        </div>
+        <div class="card-box col col-lg-8 col-md-8 col-sm-12">
+          <div class="row">
+            <div class="col">
+              <!-- <p class="card-text">Total Amount: <span style="font-family: 'Poppins-Bold';">Rs. {{o.amount}} </span> /-</p> -->
+              <p class="card-text">Order ID: <span style="font-family: 'Poppins-Bold';">#{{o.orderId}} </span></p>
+            </div>
+            <div class="col">
+              <p class="card-text">Order Status: <span class="status">{{o.status}}</span></p>
+            </div>
+          </div><br>
+          <div class="row">
+            <div class="col">
+              <p class="card-text">Order date: <span style="font-family: 'Poppins-Medium';">{{o.orderDate}}</span></p>
+            </div>
+            <div class="col">
+              <p class="card-text">Arriving By: <span style="font-family: 'Poppins-Medium';">{{o.shippingDate | date:'fullDate'}}</span></p>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col col-lg-6">
+              <p class="card-text">Time: <span style="font-family: 'Poppins-Medium';">{{o.timeslot}}</span></p>
+            </div>
+            <div class="col col-lg-6">
+              <p class="card-text">Total Amount: <span style="font-family: 'Poppins-Bold'; font-size: 20px;">Rs.{{o.totalamount}}/-</span></p>
+            </div>
+          </div><br>
+          <div class="row">
+            <div class="col col-lg-12">
+              <p class="card-text">Shipping Address: <span style="font-family: 'Poppins-Medium';">{{o.shippingAddress}}</span></p> 
+            </div>
+          </div><br>
+          <div class="row">
+            <div class="col offset-lg-9 offset-md-8">
+              <div *ngif></div>
+              <button class="btn btn-danger">Cancel Order</button>
+            </div>
+            
+          </div>
+          
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+</div>
+<br>

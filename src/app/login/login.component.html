@@ -1,0 +1,36 @@
+<!-- <div class="card">
+    <h1>Login</h1>
+    <label for="">Enter your email</label><br>
+    <input type="text" id="email" placeholder="abc@example.com" required><br>
+    <label for="">Enter your password</label><br>
+    <input type="password" id="password" placeholder="Password" required>
+</div> -->
+<div class="container">
+  <div class="row justify-content-center" >
+    <div class="col-6">
+      <form #loginForm="ngForm" (ngSubmit)="login(loginForm)" class="needs-validation" novalidate>
+          <div class="card card-custom bg-white border-white border-0">
+            <div class="card-custom-img" style="background-image: url(http://res.cloudinary.com/d3/image/upload/c_scale,q_auto:good,w_1110/trianglify-v1-cs85g_cc5d2i.jpg);"></div>
+            <div class="card-custom-avatar">
+              <img class="img-fluid" src="http://res.cloudinary.com/d3/image/upload/c_pad,g_center,h_200,q_auto:eco,w_200/bootstrap-logo_u3c8dx.jpg" alt="Avatar" />
+            </div>  
+          <div class="form-group">
+              <h2>Login</h2>
+              <label for="uname">Email ID:</label><br>
+              <input type="text" class="form-control" id="email" placeholder="Enter email" name="email" [(ngModel)]="customer.email" required />
+              <div class="valid-feedback">Valid.</div>
+              <div class="invalid-feedback">Please fill out this field.</div>
+            </div>
+            <div class="form-group">
+              <label for="pwd">Password:</label>
+              <input type="password" class="form-control" id="password" placeholder="Enter password" name="password" [(ngModel)]="customer.password" required>
+              <div class="valid-feedback">Valid.</div>
+              <div class="invalid-feedback">Please fill out this field.</div>
+            </div>
+            
+            <button type="submit" class="btn">Submit</button>
+            </div>
+      </form>
+    </div>
+  </div>
+</div>

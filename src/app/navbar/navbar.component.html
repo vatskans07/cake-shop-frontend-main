@@ -1,0 +1,49 @@
+<nav class="navbar sticky-top navbar-expand-lg navbar-light">
+    <a class="navbar-brand" routerLink="/"><span style="color: black;">Cake</span> Shop</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav justify-content-center" style="margin-left: 25%;">
+            <li>
+                <form class="form-inline">
+                    <input class="form-control" type="search" placeholder="Search" aria-label="Search">&nbsp;
+                    <button class="btn my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+            <a class="nav-link" routerLink="/">Home</a>
+            </li> &nbsp; &nbsp;
+            <li class="nav-item dropdown" *ngIf="isLoggedIn">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{name}}
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="#">Profile</a>
+                <a class="dropdown-item" routerLink="/viewOrders">My Orders</a>
+                <a class="dropdown-item" href="#">Logout</a>
+                </div>
+            </li> &nbsp; &nbsp;
+            <li>
+                <button class="btn btn-sm" routerLink="/cart">
+                    <mat-icon matBadge={{cartLength}} matBadgeColor="warn" class="material-icons-outlined">
+                        shopping_bag  
+                    </mat-icon>
+                    <!-- <span class="badge badge-light">{{cartLength}}</span> -->
+                </button>
+            </li> &nbsp; &nbsp;
+            
+            <li *ngIf="!isLoggedIn">
+                <a class="btn" routerLink="/login">Login</a>&nbsp; &nbsp;
+            </li>
+            <li *ngIf="!isLoggedIn">
+                <a class="btn" routerLink="/register">Register</a>
+            </li>
+            <li *ngIf="isLoggedIn">
+                <button class="btn" (click)="logout()">Logout</button>
+            </li>
+        </ul>
+    </div>
+</nav>

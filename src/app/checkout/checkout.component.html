@@ -1,0 +1,162 @@
+<div class="container">
+<div class="card" style="margin-top: 5%;">
+    <div class="card-body">
+        <div class="text-center">
+        <img class="d-block mx-auto mb-4" src="http://res.cloudinary.com/d3/image/upload/c_pad,g_center,h_200,q_auto:eco,w_200/bootstrap-logo_u3c8dx.jpg" alt="" width="72" height="72">
+        <h2>Checkout</h2>
+        </div>
+
+        <div class="row">
+        <div class="col-md-4 order-md-2 mb-4">
+            <h4 class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-muted">Your cart</span>
+            <span class="badge badge-secondary badge-pill">{{cartLength}}</span>
+            </h4>
+            <ul class="list-group mb-3">
+            <li *ngFor="let item of cart" class="list-group-item d-flex justify-content-between lh-condensed">
+                <div>
+                <h6 class="my-0">{{item.name}}</h6>
+                <small class="text-muted">{{'description'}}</small>
+                <h6>Quantity: {{item.quantity}}</h6>
+                </div>
+                <span class="text-muted">Rs.{{item.price*item.quantity}}</span>
+            </li>
+            
+            <li class="list-group-item d-flex justify-content-between">
+                <span>Total</span>
+                <strong>{{finalAmount}}</strong>
+            </li>
+            </ul>
+        </div>
+        <div class="col-md-8 order-md-1">
+            <h4 class="mb-3">Billing address</h4>
+            <form class="needs-validation" (submit)="placeOrder()" novalidate>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                <label for="firstName">First name</label>
+                <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+                <div class="invalid-feedback">
+                    Valid first name is required.
+                </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                <label for="lastName">Last name</label>
+                <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+                <div class="invalid-feedback">
+                    Valid last name is required.
+                </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="date">Delivery Date</label>
+                    <div class="input-group">
+                    <input type="date" class="form-control" id="date" placeholder="Date" required min="2021-05-09" (change)="onDateChange($event)">
+                    <div class="invalid-feedback" style="width: 100%;">
+                        Delivery Date is required
+                    </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="category">Select Time Slot</label>
+                    <select class="form-control" id="category" (change)="onTimeChange($event)">
+                    <option value="9AM-10AM">9 AM - 10 AM</option>
+                    <option value="10AM-11AM">10 AM - 11 AM</option>
+                    <option value="11AM-12PM">11 AM - 12 PM</option>
+                    <option value="12PM-1PM">12 PM - 1 PM</option>
+                    <option value="1PM-2PM">1 PM - 2 PM</option>
+                    <option value="2PM-3PM">2 PM - 3 PM</option>
+                    <option value="3PM-4PM">3 PM - 4 PM</option>
+                    <option value="4PM-5PM">4 PM - 5 PM</option>
+                    <option value="5PM-6PM">5 PM - 6 PM</option>
+                    <option value="6PM-7PM">6 PM - 7 PM</option>
+                    <option value="7PM-8PM">7 PM - 8 PM</option>
+                    <option value="8PM-9PM">8 PM - 9 PM</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="email">Email <span class="text-muted">(Optional)</span></label>
+                <input type="email" class="form-control" id="email" placeholder="you@example.com">
+                <div class="invalid-feedback">
+                Please enter a valid email address for shipping updates.
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="address">Shipping Address</label>
+                <input type="text" class="form-control" id="address" placeholder="1234 Main St" name="address" required [(ngModel)]="orderDto.shippingAddress">
+                <div class="invalid-feedback">
+                Please enter your shipping address.
+                </div>
+            </div>
+
+            <div class="row">
+                
+                <div class="col-md-3 mb-3">
+                <label for="zip">Pincode</label>
+                <input type="text" class="form-control" id="zip" placeholder="" name="pincode" required [(ngModel)]="pincode" [ngModelOptions]="{standalone: true}">
+                <div class="invalid-feedback">
+                    Zip code required.
+                </div>
+                </div>
+            </div>
+            <hr class="mb-4">
+
+            <h4 class="mb-3">Payment</h4>
+
+            <div class="d-block my-3">
+                <div class="custom-control custom-radio">
+                <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
+                <label class="custom-control-label" for="credit">Credit card</label>
+                </div>
+                <div class="custom-control custom-radio">
+                <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>
+                <label class="custom-control-label" for="debit">Debit card</label>
+                </div>
+                <div class="custom-control custom-radio">
+                <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required>
+                <label class="custom-control-label" for="paypal">PayPal</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                <label for="cc-name">Name on card</label>
+                <input type="text" class="form-control" id="cc-name" placeholder="" required>
+                <small class="text-muted">Full name as displayed on card</small>
+                <div class="invalid-feedback">
+                    Name on card is required
+                </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                <label for="cc-number">Credit card number</label>
+                <input type="text" class="form-control" id="cc-number" placeholder="" required>
+                <div class="invalid-feedback">
+                    Credit card number is required
+                </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 mb-3">
+                <label for="cc-expiration">Expiration</label>
+                <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
+                <div class="invalid-feedback">
+                    Expiration date required
+                </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                <label for="cc-cvv">CVV</label>
+                <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
+                <div class="invalid-feedback">
+                    Security code required
+                </div>
+                </div>
+            </div>
+            <hr class="mb-4">
+            <button class="btn btn-primary btn-lg btn-block" type="submit" (click)="placeOrder()" >Place Order</button>
+            </form>
+        </div>
+        </div>
+    </div>
+</div>

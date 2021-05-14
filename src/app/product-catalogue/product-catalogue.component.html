@@ -1,0 +1,76 @@
+<!-- <div class="container">
+    <h1>Selected Category - {{category}}</h1>
+    <div class="row">
+        <div class="col-8">
+            <div class="card-deck">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <img src="" alt="Cake image">
+                            </div>
+                            <div class="col">
+                                <p>Product Name</p>
+                                <p>Product Description</p>
+                            </div>
+                            <div class="col">
+                                <p>Product Price</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div> -->
+
+<div class="container">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+          <li class="breadcrumb-item active"><a>{{category}}</a></li>
+        </ol>
+      </nav>
+    <div class="row">
+        <div class="col-12">
+            <div class="card-deck">
+                <div *ngFor="let product of products" class="col col-lg-4 col-sm-12">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <img class="card-img-top" src="./assets/images/pinata.jpg" alt="Card image" style="width:100%;height:210px">
+                            <p class="card-text">{{product.name}}</p>
+                            <p class="card-text">{{product.description}}</p>
+                            <p class="card-text">Rs.{{product.unitprice}}</p>
+                            <button class="btn btn-primary" (click)="addToCart(product)">Add To Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="col col-lg-4 col-sm-12">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <img class="card-img-top" src="./assets/images/pinata.jpg" alt="Card image" style="width:100%;height:210px">
+                            <p class="card-text">Product Name</p>
+                            <p class="card-text">Product Description</p>
+                            <button class="btn btn-primary">Add To Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-lg-4 col-sm-12">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <img class="card-img-top" src="./assets/images/pinata.jpg" alt="Card image" style="width:100%;height:210px">
+                            <p class="card-text">Product Name</p>
+                            <p class="card-text">Product Description</p>
+                            <button class="btn btn-primary">Add To Cart</button>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
