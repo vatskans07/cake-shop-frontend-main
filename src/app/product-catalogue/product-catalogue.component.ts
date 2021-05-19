@@ -26,8 +26,6 @@ export class ProductCatalogueComponent implements OnInit {
     this.service.fetchProducts(this.category).then((response)=>{
         this.products = response;
         console.log(this.products);
-
-
       }
     )
   }
@@ -41,15 +39,16 @@ export class ProductCatalogueComponent implements OnInit {
     formdata.append('customer_id',localStorage.getItem('customerId'))
     console.log(product.name)
     this.service.addToCart(formdata).then((response) =>{
-      //console.log(response);
+      this.ngOnInit();
          Swal.fire({
            title: "Product Added",
            text:"Product added to cart",
            icon: "success",
            confirmButtonText: "Okay"
          })
-
+         
     })
+    this.ngOnInit();
     
     
   }

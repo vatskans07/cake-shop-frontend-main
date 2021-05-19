@@ -130,7 +130,8 @@ export class CustomerService {
             dataref.set({
               name:carddata.get('p_name'),
               price:carddata.get('p_price'),
-              quantity:"1"
+              quantity:"1",
+              cartid:cartid
             }).then((response)=>{
               res = response;
               //console.log(res)
@@ -157,6 +158,37 @@ export class CustomerService {
               })
   }
 
+  //service for remove item from cart
+  removeitem(cartid,customerId){
+    var result;
+    var dbref = firebase.database().ref('Carts/'+customerId+'/'+cartid+'/');
+    return dbref.get().then((snapshot)=>{
+      if(snapshot.exists()){
+        var currentquantity:number
+        currentquantity = +snapshot.val().quantity
+        console.log(currentquantity)
+        if(currentquantity == 1){
+          dbref.remove().then((response)=>{
+            result = response  
+          })
+          return result
+        }
+        else{
+          var totalquantity:number
+          totalquantity = currentquantity - 1
+          dbref.update({
+            quantity:totalquantity
+          }).then((response)=>{
+            result = response
+          })
+          return result;
+        }
+      }
+      return result;
+    })
+
+  }
+
   placeOrder(orderDto:OrderDto):Promise<any> {
     
     return firebase.database().ref('orders/'+orderDto.customerId+'/'+orderDto.orderId+'/').set({
@@ -174,6 +206,7 @@ export class CustomerService {
             })
 
   }
+  //Service for delecting card after order has been placed
   removeCart(customer_id:string)
   {
     console.log(customer_id)
@@ -194,6 +227,18 @@ export class CustomerService {
           }
           return OrderData;  
         })
+  }
+  cancelOrder(orderId:string,customer_id:string):Promise<any>{
+    var result;
+    return firebase.database().ref('orders/'+customer_id+'/'+'/'+orderId).update({
+      "status":"CANCELLED"
+      }).then((response)=>{
+            result = response
+
+              return result;
+            })
+              
+
   }
 }
 //Object.keys(snapshot.val()).forEach(element => {

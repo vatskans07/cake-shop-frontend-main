@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Customer } from '../app-model/customer';
+import Swal from 'sweetalert2';
 import { CustomerService } from '../customer.service';
 
 @Component({
@@ -24,6 +25,32 @@ export class ViewOrderComponent implements OnInit {
       //this.orderItem = response.productlist
       //console.log("productlist",this.orderItem)
     })
+  }
+  cancelOrder(orderId:string,customer_id:string)
+  {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: " ",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, Cancel it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.service.cancelOrder(orderId,customer_id).then((response)=>{
+          Swal.fire(
+            'Canceled!',
+            'Your Order has been canceled.',
+            'success'
+          )
+        })
+        this.ngOnInit()
+        
+      }
+    })
+    
+
   }
 
 }

@@ -3,7 +3,6 @@
   <div *ngFor="let o of order">
     <div class="card mb-3" style="width: 100%;">
       <div class="row no-gutters">
-        
         <div class="col-md-4">
           <div class="card-body">
             <div *ngFor="let item of o.productlist">
@@ -24,7 +23,7 @@
           </div><br>
           <div class="row">
             <div class="col">
-              <p class="card-text">Order date: <span style="font-family: 'Poppins-Medium';">{{o.orderDate}}</span></p>
+              <p class="card-text">Order date: <span style="font-family: 'Poppins-Medium';">{{o.orderDate | date:'fullDate'}}</span></p>
             </div>
             <div class="col">
               <p class="card-text">Arriving By: <span style="font-family: 'Poppins-Medium';">{{o.shippingDate | date:'fullDate'}}</span></p>
@@ -41,13 +40,14 @@
           </div><br>
           <div class="row">
             <div class="col col-lg-12">
-              <p class="card-text">Shipping Address: <span style="font-family: 'Poppins-Medium';">{{o.shippingAddress}}</span></p> 
+              <p class="card-text">Shipping Address: <span style="font-family: 'Poppins-Medium';">{{o.shippingAddress | titlecase}}</span></p> 
             </div>
           </div><br>
           <div class="row">
             <div class="col offset-lg-9 offset-md-8">
-              <div *ngif></div>
-              <button class="btn btn-danger">Cancel Order</button>
+              <div *ngIf="o.status == 'PENDING' || o.status == 'ACCEPTED' ">
+                <button class="btn btn-danger" (click)=cancelOrder(o.orderId,o.username)>Cancel Order</button>
+              </div> 
             </div>
             
           </div>

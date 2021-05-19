@@ -13,8 +13,8 @@ export class HomeComponent implements OnInit {
 
   
   ngOnInit(): void {
-    localStorage.setItem('customerId', "Kruti");
-    localStorage.setItem('customerName', 'Kruti');
+    localStorage.setItem('customerId', "Vatsal");
+    localStorage.setItem('customerName', 'Vatsal');
     this.service.fetchCategoryNames().then(
       response => {
         this.categoryNames = response;

@@ -10,7 +10,8 @@ import { CustomerService } from '../customer.service';
 export class NavbarComponent implements OnInit {
   customerId;
   name;
-  isLoggedIn:boolean = false;
+  cart;
+  isLoggedIn:boolean = true;
   cartLength;
   constructor(private router:Router, private service:CustomerService) { }
 
@@ -19,16 +20,18 @@ export class NavbarComponent implements OnInit {
     this.name = localStorage.getItem('customerName');
     if(this.customerId != null) {
       this.isLoggedIn = true;
-      // this.service.fetchCart(this.customerId).subscribe(
-      //   response=> {
-      //     if(response == null) {
-      //       this.cartLength = 0;
-      //     } else {
-      //       this.cartLength = response.cartItems.length;
-      //     }
-      //   }
-      // )
-    } else {
+      this.service.fetchCart(this.customerId).then((response) =>{
+        if(response != null){
+          this.cart = response;
+          this.cartLength = this.cart.length
+        }
+        else{
+          this.cartLength = 0;
+        }
+
+      })
+    }
+    else {
       this.isLoggedIn = false
       this.cartLength = 0
     }
@@ -44,3 +47,17 @@ export class NavbarComponent implements OnInit {
   }
 
 }
+
+// this.service.fetchCart(this.customerId).then(
+//   (response)=> {
+//     if(response == null) {
+//       this.cartLength = 0;
+//     } else {
+//       this.cart = response
+//       console.log("res"+this.cart)
+//       //his.cartLength = response.cartItems.length;
+//       //console.log("cartlenge",this.cartLength)
+//     }
+//   }
+// )
+// }

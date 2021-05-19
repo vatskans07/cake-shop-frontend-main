@@ -24,6 +24,12 @@ export class CartComponent implements OnInit {
     
 
   }
+  removeitem(cartid:string)
+  {
+    this.service.removeitem(cartid,this.customerId).then((response)=>{
+      this.ngOnInit()
+    })
+  }
 }
 // this.service.fetchCart(this.customerId).subscribe(
 //   response=> {
